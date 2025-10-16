@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+
+.payment-page {
+    padding: 2rem;
+    background: #f8fafc;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.payment-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(15, 52, 96, 0.1);
+    overflow: hidden;
+}
+
+.payment-header {
+    background: linear-gradient(135deg, #0f3460 0%, #1e4a7a 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+
+    h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+    }
+}
+
+.payment-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    padding: 2rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.order-summary {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+
+    h3 {
+        font-family: 'Montserrat', sans-serif;
+        color: #0f3460;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .item-name {
+        color: #333;
+        font-weight: 500;
+    }
+
+    .item-price {
+        color: #666;
+    }
+}
+
+.order-total {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 2px solid #0f3460;
+    text-align: right;
+    font-size: 1.2rem;
+    color: #0f3460;
+}
+
+.payment-methods {
+    h3 {
+        font-family: 'Montserrat', sans-serif;
+        color: #0f3460;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+    }
+}
+
+.method-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.method-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+
+    &:hover {
+        border-color: #0f3460;
+    }
+
+    input[type="radio"] {
+        margin-right: 1rem;
+        transform: scale(1.2);
+    }
+
+    &.selected {
+        border-color: #0f3460;
+        background: #f0f7ff;
+    }
+}
+
+.card-form {
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+
+            &:focus {
+                outline: none;
+                border-color: #0f3460;
+            }
+
+            &::placeholder {
+                color: #94a3b8;
+            }
+        }
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.mock-payment {
+    text-align: center;
+    padding: 2rem;
+    background: #f0f7ff;
+    border-radius: 8px;
+    border: 2px dashed #0f3460;
+
+    .mock-info {
+        p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #0f3460;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover:not(:disabled) {
+        background: #1e4a7a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(15, 52, 96, 0.3);
+    }
+
+    &:disabled {
+        background: #94a3b8;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    &.mock-btn {
+        background: #e94560;
+        
+        &:hover:not(:disabled) {
+            background: #d43a55;
+        }
+    }
+}
+
+.payment-actions {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-btn {
+    background: transparent;
+    color: #0f3460;
+    border: 2px solid #0f3460;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+        background: #0f3460;
+        color: white;
+    }
+}
+
+// Security badges
+.security-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    opacity: 0.7;
+
+    .badge {
+        font-size: 0.8rem;
+        color: #666;
+    }
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .payment-page {
+        padding: 1rem;
+    }
+
+    .payment-content {
+        padding: 1.5rem;
+    }
+
+    .payment-header {
+        padding: 1.5rem;
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+}

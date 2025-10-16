@@ -1,0 +1,31 @@
+ @import '../../styles/variables';
+
+ .footer-row{
+   background-color:#0f3460;
+   margin:0;
+   padding: 80px;
+   padding-left: 11%;
+
+}
+$no-bullets: none;
+ul {
+  list-style-type: $no-bullets;
+   color:grey !important
+}
+h6{
+   max-width: 150px;
+   color:grey !important
+}
+
+h3{
+   color:white !important;
+   margin :0;
+   padding: 8px;
+}
+.name{
+   display: flex;
+   align-items: center;
+}
+
+
+

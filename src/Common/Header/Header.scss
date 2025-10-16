@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+ @import '../../styles/variables';
+
+.custom-navbar{
+    background-color:#0f3460; 
+}
+.custom-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0;
+  background: transparent;
+
+  .navbar-toggler-icon {
+    background-image: none !important; /* kill Bootstrap default */
+    background-color: white; /* middle bar */
+    width: 24px;
+    height: 2px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      background-color: white;
+      left: 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      top: 8px;
+    }
+  }
+
+  &.open .navbar-toggler-icon {
+    background-color: transparent;
+
+    &::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+  }
+}
+
+
+
+.me-auto{
+    margin-left: 70%;
+}
+.navbar .nav-link {
+  color: white !important;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  transition: font-size 0.3s ease;
+}
+ .navbar .nav-link:hover{
+    font-size: 20px;
+}
+
+.navbar-brand{
+  color: white !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
