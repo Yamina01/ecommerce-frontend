@@ -25,7 +25,7 @@ const fetchCart = async () => {
       return;
     }
     
-    const response = await axios.get('${process.env.REACT_APP_API_URL}/api/cart', {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -164,11 +164,11 @@ const removeItem = async(itemId) =>{
                   src={
                     item.product.imageUrl
                     ? `${process.env.REACT_APP_API_URL}/images/products/${item.product.imageUrl}`
-                    : '${process.env.REACT_APP_API_URL}/images/products/placeholder.png'
+                    : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                   }
                   alt = {item.product.productname}
                   onError={(e)=>{
-                    e.target.src = '${process.env.REACT_APP_API_URL}/images/products/placeholder.png';
+                    e.target.src = `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`;
                   }}
                   />
                 </div>

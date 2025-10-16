@@ -10,13 +10,7 @@ function OrderSuccess() {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        if (orderId) {
-            fetchOrder();
-        }
-    }, [orderId]);
-
+useEffect(() => {
     const fetchOrder = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -31,6 +25,11 @@ function OrderSuccess() {
             setLoading(false);
         }
     };
+    
+    if (orderId) {
+        fetchOrder();
+    }
+}, [orderId]); 
 
     if (loading) {
         return (

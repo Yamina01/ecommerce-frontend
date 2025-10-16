@@ -15,7 +15,7 @@ function Homepage() {
 
     const fetchFeaturedProducts = async () => {
         try {
-            const response = await axios.get('${process.env.REACT_APP_API_URL}/api/products');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
             // Take first 6 products as featured
             const featured = response.data.slice(0, 6);
             setFeaturedProducts(featured);
@@ -96,11 +96,11 @@ function Homepage() {
                                             src={
                                                 product.imageUrl
                                                     ? `${process.env.REACT_APP_API_URL}/images/products/${product.imageUrl}`
-                                                    : '${process.env.REACT_APP_API_URL}/images/products/placeholder.png'
+                                                    : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                                             }
                                             alt={product.productname}
                                             onError={(e) => {
-                                                e.target.src = '${process.env.REACT_APP_API_URL}/images/products/placeholder.png';
+                                                e.target.src = `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`;
                                             }}
                                         />
                                         {product.stock === 0 && (

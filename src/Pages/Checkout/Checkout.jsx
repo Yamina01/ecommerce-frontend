@@ -20,7 +20,7 @@ function Checkout() {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('${process.env.REACT_APP_API_URL}/api/cart', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCart(response.data);
@@ -50,7 +50,7 @@ function Checkout() {
       };
 
       const response = await axios.post(
-        '${process.env.REACT_APP_API_URL}/api/orders/create',
+        `${process.env.REACT_APP_API_URL}/api/orders/create`,
         orderData,
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -106,7 +106,7 @@ function Checkout() {
   const clearCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('${process.env.REACT_APP_API_URL}/api/cart/clear', {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/cart/clear`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Cart cleared after successful payment');
@@ -180,11 +180,11 @@ function Checkout() {
                         <img 
                           src={item.product.imageUrl 
                             ? `${process.env.REACT_APP_API_URL}/images/products/${item.product.imageUrl}`
-                            : '${process.env.REACT_APP_API_URL}/images/products/placeholder.png'
+                            : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                           } 
                           alt={item.product.productname}
                           onError={(e) => {
-                            e.target.src = '${process.env.REACT_APP_API_URL}/images/products/placeholder.png';
+                            e.target.src = `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`;
                           }}
                         />
                       </div>
