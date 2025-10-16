@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router , Routes , Route}from 'react-router-dom'
+import {HashRouter as Router , Routes , Route}from 'react-router-dom'
 import Home from '../Pages/Home/Home'
 import Products from '../Pages/Products/Products'
 import Cart from '../Pages/Cart/Cart'
