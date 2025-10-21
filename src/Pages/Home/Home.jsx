@@ -95,7 +95,7 @@ function Homepage() {
                                         <img
                                             src={
                                                 product.imageUrl
-                                                    ? `${process.env.REACT_APP_API_URL}/images/products/${product.imageUrl}`
+                                                    ? `${product.imageUrl}`
                                                     : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                                             }
                                             alt={product.productname}
