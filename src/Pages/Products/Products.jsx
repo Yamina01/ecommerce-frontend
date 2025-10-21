@@ -117,8 +117,8 @@ function Products() {
                 <img 
                   src={
                     product.imageUrl
-                      ? `${process.env.REACT_APP_API_URL}/images/products/${product.imageUrl}`  // ✅ FIXED: Products → products
-                      : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`  // ✅ FIXED: Use backticks
+                      ? `${product.imageUrl}` 
+                      : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`  
                   }
                   alt={product.productname}
                   className="product-image"
