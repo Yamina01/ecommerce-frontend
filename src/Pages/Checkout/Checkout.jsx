@@ -25,6 +25,7 @@ function Checkout() {
       });
       setCart(response.data);
     } catch (err) {
+      console.error('Error fetching cart:', err);
       setError('Failed to load cart');
     } finally {
       setLoading(false);
@@ -37,32 +38,30 @@ function Checkout() {
       setError('');
       const token = localStorage.getItem('token');
       
-      console.log('Creating order...');
+      console.log('🛒 Creating order from cart...');
+      console.log('🛒 Backend URL:', process.env.REACT_APP_API_URL);
+      console.log('🛒 Token exists:', !!token);
 
-      const orderData = {
-        items: cart.items.map(item => ({
-          productId: item.product.id,
-          quantity: item.quantity,
-          price: item.product.price
-        })),
-        totalAmount: calculateTotal(),
-        shippingAddress: "User's default address"
-      };
-
+      // ✅ CORRECT - Send empty body, backend uses user's cart automatically
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/orders/checkout`,
-        orderData,
+        {}, // ✅ EMPTY body - backend creates order from cart
         {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
       );
 
-      console.log('Order created:', response.data);
+      console.log('✅ Order created successfully:', response.data);
       setOrderCreated(response.data);
       return response.data;
 
     } catch (err) {
-      console.error('Order creation error:', err);
+      console.error('❌ Order creation failed:');
+      console.error('❌ Error:', err.response?.data || err.message);
+      console.error('❌ Status:', err.response?.status);
       setError('Failed to create order. Please try again.');
       throw err;
     } finally {
@@ -72,35 +71,55 @@ function Checkout() {
 
   const handleProceedToPayment = async () => {
     try {
+      console.log('🛒 Starting payment process...');
+      
       if (!cart?.items?.length) {
         setError('Your cart is empty');
         return;
       }
 
-      await createOrder();
+      console.log('🛒 Cart has items:', cart.items.length);
+      
+      const order = await createOrder();
+      
+      console.log('✅ Order created, proceeding to payment...');
       setShowPayment(true);
 
     } catch (err) {
-      console.error('Error proceeding to payment:', err);
+      console.error('❌ Error proceeding to payment:', err);
+      
+      // Show specific error messages
+      if (err.response?.status === 401) {
+        setError('Please login to continue');
+      } else if (err.response?.status === 400) {
+        setError('Invalid request. Please check your cart.');
+      } else if (err.response?.status === 500) {
+        setError('Server error. Please try again later.');
+      } else {
+        setError('Failed to process payment. Please try again.');
+      }
     }
   };
 
   const handlePaymentSuccess = async (orderId) => {
     try {
-      console.log('Payment successful for order:', orderId);
+      console.log('✅ Payment successful for order:', orderId);
       
       await clearCart();
       
-      window.location.href = `/order-success/${orderId}`;
+      // Use hash routing since you're using HashRouter
+      window.location.href = `/#/order-success/${orderId}`;
       
     } catch (err) {
-      console.error('Error after payment success:', err);
+      console.error('❌ Error after payment success:', err);
+      setError('Payment successful but failed to clear cart. Order ID: ' + orderId);
     }
   };
 
   const handlePaymentCancel = () => {
     setShowPayment(false);
     setOrderCreated(null);
+    setError('Payment was cancelled.');
   };
 
   const clearCart = async () => {
@@ -109,9 +128,10 @@ function Checkout() {
       await axios.delete(`${process.env.REACT_APP_API_URL}/api/cart/clear`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log('Cart cleared after successful payment');
+      console.log('✅ Cart cleared after successful payment');
     } catch (err) {
-      console.error('Error clearing cart:', err);
+      console.error('❌ Error clearing cart:', err);
+      throw err;
     }
   };
 
@@ -149,6 +169,7 @@ function Checkout() {
       <Payment
         cartItems={getCartItemsForPayment()}
         totalAmount={calculateTotal()}
+        orderId={orderCreated.id}
         onPaymentSuccess={handlePaymentSuccess}
         onBackToCart={handlePaymentCancel}
       />
