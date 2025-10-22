@@ -191,10 +191,10 @@ function Checkout() {
                       <div className="item-details">
                         <h4>{item.product.productname}</h4>
                         <p>Quantity: {item.quantity}</p>
-                        <p>Price: ${item.product.price}</p>
+                        <p>Price: ₹{item.product.price}</p>
                       </div>
                       <div className="item-total">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        ₹{(item.product.price * item.quantity).toFixed(2)}
                       </div>
                     </div>
                   ))
@@ -208,15 +208,15 @@ function Checkout() {
               <div className="checkout-total">
                 <div className="total-line">
                   <span>Subtotal:</span>
-                  <span>${calculateTotal().toFixed(2)}</span>
+                  <span>₹{calculateTotal().toFixed(2)}</span>
                 </div>
                 <div className="total-line">
                   <span>Shipping:</span>
-                  <span>$0.00</span>
+                  <span>₹0.00</span>
                 </div>
                 <div className="total-line final-total">
                   <span>Total:</span>
-                  <span>${calculateTotal().toFixed(2)}</span>
+                  <span>₹{calculateTotal().toFixed(2)}</span>
                 </div>
               </div>
 
