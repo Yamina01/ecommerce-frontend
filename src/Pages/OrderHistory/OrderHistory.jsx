@@ -74,7 +74,7 @@ function OrderHistory() {
     const getProductImage = (item) => {
         const imageUrl = item.product?.imageUrl || item.productImageUrl;
         return imageUrl 
-            ? `${process.env.REACT_APP_API_URL}/images/products/${imageUrl}`
+            ? `${imageUrl}`
             : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`;
     };
 
