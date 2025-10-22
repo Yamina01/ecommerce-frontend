@@ -163,7 +163,7 @@ const removeItem = async(itemId) =>{
                   <img
                   src={
                     item.product.imageUrl
-                    ? `${process.env.REACT_APP_API_URL}/images/products/${item.product.imageUrl}`
+                    ? `${item.product.imageUrl}`
                     : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                   }
                   alt = {item.product.productname}
