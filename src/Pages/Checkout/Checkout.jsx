@@ -179,7 +179,7 @@ function Checkout() {
                       <div className="item-image">
                         <img 
                           src={item.product.imageUrl 
-                            ? `${process.env.REACT_APP_API_URL}/images/products/${item.product.imageUrl}`
+                            ? `${item.product.imageUrl}`
                             : `${process.env.REACT_APP_API_URL}/images/products/placeholder.png`
                           } 
                           alt={item.product.productname}
