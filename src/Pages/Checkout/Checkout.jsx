@@ -50,7 +50,7 @@ function Checkout() {
       };
 
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/orders/create`,
+        `${process.env.REACT_APP_API_URL}/api/orders/checkout`,
         orderData,
         {
           headers: { Authorization: `Bearer ${token}` }
